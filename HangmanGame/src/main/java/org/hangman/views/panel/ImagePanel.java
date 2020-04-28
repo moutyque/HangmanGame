@@ -1,4 +1,4 @@
-package org.hangman.views.pan;
+package org.hangman.views.panel;
 
 import java.awt.Graphics;
 import java.awt.Image;

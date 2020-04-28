@@ -1,4 +1,4 @@
-package org.hangman.views.pan;
+package org.hangman.views.panel;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -20,6 +20,7 @@ public class HomePan extends JPanel {
 	private final String homePicturePath = "pictures/homePicture.jpg";
 
 
+	
 	public HomePan() {
 		Properties prop = new Properties();
 		try {
