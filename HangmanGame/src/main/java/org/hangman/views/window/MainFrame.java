@@ -1,7 +1,6 @@
 package org.hangman.views.window;
 
 import java.awt.Dimension;
-import java.awt.HeadlessException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,26 +10,25 @@ import javax.swing.JPanel;
 
 import org.hangman.views.menus.AboutMenue;
 import org.hangman.views.menus.FilesMenu;
-import org.hangman.views.panel.HomePan;
+import org.hangman.views.panel.AboutPanel;
+import org.hangman.views.panel.HomePanel;
 
 public class MainFrame extends JFrame implements Observer {
 	private Dimension defaultDim = new Dimension(700,500);
 
-	private JPanel homePanel = new JPanel();
+	private JPanel homePanel = new HomePanel();
 	private JPanel gamePanel= new JPanel();
 	private JPanel scorePanel= new JPanel();
-	private JPanel rulesPane= new JPanel();
-	private JPanel aboutPane= new JPanel();
+	private JPanel rulesPanel= new JPanel();
+	private JPanel aboutPanel= new AboutPanel();
+	
 
-	private JPanel currentPanel= new JPanel();
-
-	public MainFrame(String title) throws HeadlessException {
+	public MainFrame(String title)  {
 		super(title);
 		this.setSize(defaultDim);
 
-		homePanel = new HomePan();
-		currentPanel = homePanel;
-		this.setContentPane(currentPanel);
+		
+		this.setContentPane(homePanel);
 
 
 		JMenuBar bar = new JMenuBar();
@@ -41,7 +39,6 @@ public class MainFrame extends JFrame implements Observer {
 
 		bar.add(fileMenu);
 		bar.add(aboutMenu);
-
 		this.setJMenuBar(bar);
 
 
@@ -58,30 +55,37 @@ public class MainFrame extends JFrame implements Observer {
 
 	}
 
-
+	private void updatPan(){
+		this.getContentPane().repaint();
+		this.getContentPane().revalidate();
+	}
 
 	public void switchToGamePane() {
-		currentPanel = gamePanel;		
+		this.setContentPane(gamePanel);	
+		updatPan();
 	}
 
 
 
 	public void switchToScorePane() {
-		currentPanel = scorePanel;
+		this.setContentPane(scorePanel);
+		updatPan();
 
 	}
 
 
 
 	public void switchToRulePane() {
-		currentPanel = rulesPane;
+		this.setContentPane(rulesPanel);
+		updatPan();
 
 	}
 
 
 
 	public void switchToAboutPant() {
-		currentPanel = aboutPane;
+		this.setContentPane(aboutPanel);
+		updatPan();
 
 	}
 
