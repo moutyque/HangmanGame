@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import org.hangman.views.menus.AboutMenue;
 import org.hangman.views.menus.FilesMenu;
 import org.hangman.views.panel.RulesPanel;
+import org.hangman.views.panel.AboutPanel;
 import org.hangman.views.panel.HomePanel;
 
 public class MainFrame extends JFrame implements Observer {
@@ -20,7 +21,7 @@ public class MainFrame extends JFrame implements Observer {
 	private JPanel gamePanel= new JPanel();
 	private JPanel scorePanel= new JPanel();
 	private JPanel rulesPanel= new RulesPanel();
-	private JPanel aboutPanel= new RulesPanel();
+	private JPanel aboutPanel= new AboutPanel();
 	
 
 	public MainFrame(String title)  {

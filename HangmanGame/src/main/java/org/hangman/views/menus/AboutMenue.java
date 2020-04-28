@@ -1,11 +1,8 @@
 package org.hangman.views.menus;
 
-import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Action;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import org.hangman.views.window.MainFrame;

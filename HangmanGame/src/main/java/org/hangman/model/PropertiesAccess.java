@@ -25,5 +25,16 @@ public class PropertiesAccess {
 	public Properties getProperties() {
 		return properties;
 	}
+	
+	public static Properties getPropeties(String fileName) {
+		Properties prop = new Properties();
+			try {
+				prop = FileLoader.getPropertyFile(fileName);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return prop;
+	}
 
 }
