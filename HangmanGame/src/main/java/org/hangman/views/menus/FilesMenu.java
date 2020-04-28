@@ -29,7 +29,7 @@ public class FilesMenu extends JMenu {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.switchToGamePane();
+				frame.switchToGamePanel();
 				
 			}
 		});
@@ -38,7 +38,7 @@ public class FilesMenu extends JMenu {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.switchToScorePane();
+				frame.switchToScorePanel();
 				
 			}
 		});
@@ -49,7 +49,7 @@ public class FilesMenu extends JMenu {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.switchToRulePane();
+				frame.switchToRulePanel();
 				
 			}
 		});

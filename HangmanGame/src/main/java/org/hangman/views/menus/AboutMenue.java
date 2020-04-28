@@ -24,7 +24,7 @@ public class AboutMenue extends JMenuItem {
 		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.switchToAboutPant();
+				frame.switchToAboutPanel();
 			}
 		});
 	}

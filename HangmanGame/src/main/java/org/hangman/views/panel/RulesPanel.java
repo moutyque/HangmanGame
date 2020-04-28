@@ -11,9 +11,9 @@ import javax.swing.SwingConstants;
 import org.hangman.model.PropertiesAccess;
 import org.hangman.views.font.FontFactory;
 
-public class AboutPanel extends JPanel {
+public class RulesPanel extends JPanel {
 
-	public AboutPanel() {
+	public RulesPanel() {
 		this.setLayout(new BorderLayout());
 
 		Properties prop = PropertiesAccess.getInstance().getProperties();

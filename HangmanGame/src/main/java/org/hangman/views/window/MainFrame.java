@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import org.hangman.views.menus.AboutMenue;
 import org.hangman.views.menus.FilesMenu;
-import org.hangman.views.panel.AboutPanel;
+import org.hangman.views.panel.RulesPanel;
 import org.hangman.views.panel.HomePanel;
 
 public class MainFrame extends JFrame implements Observer {
@@ -19,8 +19,8 @@ public class MainFrame extends JFrame implements Observer {
 	private JPanel homePanel = new HomePanel();
 	private JPanel gamePanel= new JPanel();
 	private JPanel scorePanel= new JPanel();
-	private JPanel rulesPanel= new JPanel();
-	private JPanel aboutPanel= new AboutPanel();
+	private JPanel rulesPanel= new RulesPanel();
+	private JPanel aboutPanel= new RulesPanel();
 	
 
 	public MainFrame(String title)  {
@@ -55,37 +55,37 @@ public class MainFrame extends JFrame implements Observer {
 
 	}
 
-	private void updatPan(){
+	private void updatPanel(){
 		this.getContentPane().repaint();
 		this.getContentPane().revalidate();
 	}
 
-	public void switchToGamePane() {
+	public void switchToGamePanel() {
 		this.setContentPane(gamePanel);	
-		updatPan();
+		updatPanel();
 	}
 
 
 
-	public void switchToScorePane() {
+	public void switchToScorePanel() {
 		this.setContentPane(scorePanel);
-		updatPan();
+		updatPanel();
 
 	}
 
 
 
-	public void switchToRulePane() {
+	public void switchToRulePanel() {
 		this.setContentPane(rulesPanel);
-		updatPan();
+		updatPanel();
 
 	}
 
 
 
-	public void switchToAboutPant() {
+	public void switchToAboutPanel() {
 		this.setContentPane(aboutPanel);
-		updatPan();
+		updatPanel();
 
 	}
 
