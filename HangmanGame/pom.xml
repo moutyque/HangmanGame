@@ -16,7 +16,11 @@
 			<email>q.mouty@gmail.com</email>
 		</contributor>
 	</contributors>
-
+	<properties>
+		<author.name>Quentin MOUTY</author.name>
+		<author.role>Creator</author.role>
+		<author.mail>q.mouty@gmail.com</author.mail>
+	</properties>
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -28,7 +32,6 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
-
 			</plugin>
 		</plugins>
 		<resources>

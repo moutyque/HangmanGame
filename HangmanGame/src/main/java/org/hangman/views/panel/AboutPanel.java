@@ -25,7 +25,7 @@ public class AboutPanel extends JPanel {
 		txt.setLineWrap(true);
 		Properties prop = PropertiesAccess.getPropeties("project.properties");
 		txt.append("Auteur : ");
-		txt.append(prop.getProperty("author"));
+		txt.append(prop.getProperty("author.name"));
 		txt.append("\n");
 		txt.append("Version : ");
 		txt.append(prop.getProperty("version"));
@@ -35,7 +35,7 @@ public class AboutPanel extends JPanel {
 		txt.append("\n");
 		this.add(txt,BorderLayout.CENTER);
 
-		
+
 	}
 	
 }
