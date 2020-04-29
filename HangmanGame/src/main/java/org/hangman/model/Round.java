@@ -20,6 +20,10 @@ public class Round {
 	private final int[] scores = new int[]{100,50,35,25,15,10,5};
 	private Set<Character> usedChar = new HashSet<>();
 
+	public Set<Character> getUsedChar() {
+		return usedChar;
+	}
+
 	public Round(String word) {
 		this.word = word;
 		StringBuilder sb = new StringBuilder();
@@ -76,6 +80,7 @@ public class Round {
 	
 	
 	public void submitChar(char c) {
+		c = Character.toLowerCase(c);
 		if(!usedChar.contains(c)) {
 			boolean isPresent = false;
 			StringBuilder tmpWord = new StringBuilder(guessWord);

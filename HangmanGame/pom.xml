@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>HangmanGame</groupId>
 	<artifactId>HangmanGame</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Hangman Game</name>
 	<url>https://github.com/moutyque/HangmanGame</url>
 	<contributors>
@@ -45,6 +45,12 @@
 	</build>
 
 	<dependencies>
+	
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

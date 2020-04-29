@@ -6,7 +6,10 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.hangman.model.Score;
+import org.hangman.views.helper.FileLoader;
 
 public abstract class Scoremanager {
 
@@ -20,6 +23,21 @@ public abstract class Scoremanager {
 			scores.add(new Score(Integer.parseInt(value.split("\\|")[0]), Integer.parseInt(value.split("\\|")[1]), key));
 		}
 		scores.sort((a,b)->Integer.compare(b.getScore(), a.getScore()));
-		return scores;
+		int limit = Math.min(scores.size(), 10);
+		return scores.subList(0, limit);
+	}
+
+	public static void addScore(int gameScore, int nbWords, String pseudo) {
+		String value = gameScore +"|" + nbWords;
+		PropertiesConfiguration config;
+		try {
+			config = new PropertiesConfiguration(FileLoader.getFile("textfiles/score.properties"));
+			config.setProperty(pseudo, value);
+			config.save();
+		} catch (ConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}           
+		
 	}
 }

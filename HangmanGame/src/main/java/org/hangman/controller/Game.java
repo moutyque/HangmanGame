@@ -17,15 +17,28 @@ import org.hangman.views.helper.FileLoader;
 public class Game extends Observable {
 	private int gameScore =0;
 	private boolean isOver=false;
-	
+	private boolean needPseudo=false;
+
+	public boolean isPseudoNeeded() {
+		return needPseudo;
+	}
 
 	private List<Round> rounds = new ArrayList<>();
 	private List<String> dico = new ArrayList<>();
-	
-	
+	private String pseudo = "";
+
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
 	public Game() {
 		File file = FileLoader.getFile(Constante.DICO_PATH);
-		
+
 		try {
 			dico =  Files.readAllLines(file.toPath(),Charset.forName("Cp1252"));
 		} catch (IOException e) {
@@ -34,39 +47,52 @@ public class Game extends Observable {
 		}
 		newRound();	
 	}	
-	
+
 	public void submitChar(char c){ 
 		Round round = this.getCurrentRound();
+	
 		round.submitChar(c);
+		setChanged();
+		update();
 		if(round.getErrorsCount() > 6) {
 			endGame();
 		}
-		else{
+		else if(round.isOver()){
 			nextRound();	
 		}
-		
+	
+	}
+
+	private synchronized void update() {
+		notifyObservers();
 	}
 	
 	private void nextRound() {
-		// TODO Auto-generated method stub
-		
+		update();
+		newRound();
+
 	}
 
 	private void endGame() {
 		List<Score> scores = Scoremanager.getTenTopScore();
-		if(scores.get(scores.size()-1).getScore() < getGameScore()) {
-		
-			
+		isOver = true;
+		if(scores.get(scores.size()-1).getScore() < this.getGameScore()) {
+			needPseudo = true;
+			update();
+			Scoremanager.addScore(this.getGameScore(),this.rounds.size()-1,this.pseudo);
 		}
-		
-		
+		else {
+			update();
+		}
+
+
 	}
 
 	public void newRound() {
 		int wordNumber = new Random().nextInt(dico.size());
 		rounds.add(new Round(dico.get(wordNumber)));
-		gameScore = rounds.stream().mapToInt(Round::getRoundScore).reduce(0, (a,b)->a+b);
-		
+		gameScore = rounds.stream().mapToInt(Round::getRoundScore).reduce(0, (a,b)->a+b)-rounds.get(rounds.size()-1).getRoundScore();
+
 	}
 
 	public Round getCurrentRound() {
@@ -80,5 +106,10 @@ public class Game extends Observable {
 	public boolean isOver() {
 		return isOver;
 	}
-	
+
+	public int getNbFoundWord() {
+		
+		return this.rounds.size()-1;
+	}
+
 }
