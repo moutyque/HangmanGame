@@ -10,16 +10,17 @@ import javax.swing.JPanel;
 
 import org.hangman.views.menus.AboutMenue;
 import org.hangman.views.menus.FilesMenu;
-import org.hangman.views.panel.RulesPanel;
 import org.hangman.views.panel.AboutPanel;
 import org.hangman.views.panel.HomePanel;
+import org.hangman.views.panel.RulesPanel;
+import org.hangman.views.panel.ScoresPanel;
 
 public class MainFrame extends JFrame implements Observer {
 	private Dimension defaultDim = new Dimension(900,600);
 
 	private JPanel homePanel = new HomePanel();
 	private JPanel gamePanel= new JPanel();
-	private JPanel scorePanel= new JPanel();
+	private JPanel scorePanel= new ScoresPanel();
 	private JPanel rulesPanel= new RulesPanel();
 	private JPanel aboutPanel= new AboutPanel();
 	

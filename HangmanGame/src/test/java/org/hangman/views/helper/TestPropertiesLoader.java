@@ -33,4 +33,12 @@ public class TestPropertiesLoader {
 		
 		assertTrue(file.exists());
 	}
+	
+	
+	@Test
+	public void LoadExistinScoreFile() throws FileNotFoundException {
+		Properties prop = FileLoader.getPropertyFile("textfiles/score.properties");
+		assertFalse(prop.isEmpty());
+	}
+
 }
