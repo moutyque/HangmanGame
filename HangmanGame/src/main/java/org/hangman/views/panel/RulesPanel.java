@@ -1,6 +1,7 @@
 package org.hangman.views.panel;
 
 import java.awt.BorderLayout;
+import java.awt.Insets;
 import java.util.Properties;
 
 import javax.swing.JLabel;
@@ -12,7 +13,7 @@ import org.hangman.model.PropertiesAccess;
 import org.hangman.views.font.FontFactory;
 
 public class RulesPanel extends JPanel {
-
+private int marge = 50;
 	public RulesPanel() {
 		this.setLayout(new BorderLayout());
 
@@ -27,6 +28,11 @@ public class RulesPanel extends JPanel {
 		text.setLineWrap(true);
 		text.setFont(FontFactory.getTextFont());
 		text.append(prop.getProperty("Goal"));
+		text.append("\n");
+		text.append("\n");
+
+		text.append(prop.getProperty("Score.Header"));
+		text.append("\n");
 
 		text.append(prop.getProperty("Score.0"));
 		text.append(prop.getProperty("Score.1"));
@@ -35,9 +41,13 @@ public class RulesPanel extends JPanel {
 		text.append(prop.getProperty("Score.4"));
 		text.append(prop.getProperty("Score.5"));
 		text.append(prop.getProperty("Score.6"));
-		
+		text.append("\n");
+		text.append("\n");
+		text.append("\n");
+
 		text.append(prop.getProperty("Score.Footer"));
-		
+		text.setMargin( new Insets(marge,marge,marge,marge) ); // tt is JTextArea instance
+
 		this.add(text,BorderLayout.CENTER);
 		
 		

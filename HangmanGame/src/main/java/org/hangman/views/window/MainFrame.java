@@ -15,7 +15,7 @@ import org.hangman.views.panel.AboutPanel;
 import org.hangman.views.panel.HomePanel;
 
 public class MainFrame extends JFrame implements Observer {
-	private Dimension defaultDim = new Dimension(700,500);
+	private Dimension defaultDim = new Dimension(900,600);
 
 	private JPanel homePanel = new HomePanel();
 	private JPanel gamePanel= new JPanel();
