@@ -1,14 +1,15 @@
-package org.hangman.model;
+package org.hangman.controller;
 
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
+import org.hangman.model.Constante;
 import org.hangman.views.helper.FileLoader;
 //Singleton
-public class PropertiesAccess {
-	private static PropertiesAccess me = null;
+public class PropertiesLoader {
+	private static PropertiesLoader me = null;
 	private Properties properties= new Properties();
-	private PropertiesAccess() {
+	private PropertiesLoader() {
 		try {
 			properties = FileLoader.getPropertyFile(Constante.RESOURCES_PROPERTIES_PATH);
 		} catch (FileNotFoundException e) {
@@ -17,8 +18,8 @@ public class PropertiesAccess {
 		}
 	}
 	
-	public static PropertiesAccess getInstance() {
-		if(me==null) me = new PropertiesAccess();
+	public static PropertiesLoader getInstance() {
+		if(me==null) me = new PropertiesLoader();
 		return me;
 	}
 

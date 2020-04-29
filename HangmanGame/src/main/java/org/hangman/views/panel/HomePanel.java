@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import org.hangman.controller.PropertiesLoader;
 import org.hangman.model.Constante;
-import org.hangman.model.PropertiesAccess;
 import org.hangman.views.font.FontFactory;
 import org.hangman.views.helper.FileLoader;
 
@@ -24,7 +24,7 @@ public class HomePanel extends JPanel {
 	
 	public HomePanel() {
 		
-		Properties prop = PropertiesAccess.getInstance().getProperties();
+		Properties prop = PropertiesLoader.getInstance().getProperties();
 		this.setLayout(new BorderLayout());
 		JLabel label = new JLabel(prop.getProperty("Home.Header"),SwingConstants.CENTER);
 		label.setFont(FontFactory.getHeaderFont());

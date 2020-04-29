@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import org.hangman.model.PropertiesAccess;
+import org.hangman.controller.PropertiesLoader;
 import org.hangman.views.font.FontFactory;
 
 public class AboutPanel extends JPanel {
@@ -23,7 +23,7 @@ public class AboutPanel extends JPanel {
 		JTextArea txt = new JTextArea();
 		txt.setEditable(false);
 		txt.setLineWrap(true);
-		Properties prop = PropertiesAccess.getPropeties("project.properties");
+		Properties prop = PropertiesLoader.getPropeties("project.properties");
 		txt.append("Auteur : ");
 		txt.append(prop.getProperty("author.name"));
 		txt.append("\n");
