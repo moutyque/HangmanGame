@@ -44,6 +44,7 @@ public class Game extends Observable {
 		File file = FileLoader.getFile(Constante.DICO_PATH);
 
 		try {
+	
 			dico =  Files.readAllLines(file.toPath(),Charset.forName("Cp1252"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

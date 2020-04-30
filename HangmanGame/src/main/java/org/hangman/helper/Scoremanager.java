@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
@@ -18,7 +20,19 @@ import org.hangman.model.Score;
 public abstract class Scoremanager {
 
 	public static List<Score> getTenTopScore(){
-		Properties prop = PropertiesLoader.getPropeties("textfiles/score.properties");
+		
+		Properties prop =null;
+		String path = System.getProperty("SCORE_PATH");
+		
+		System.out.println("path : " +path);
+		if(!path.isEmpty()) {
+			
+            prop = PropertiesLoader.getPropeties(path);
+		}
+		else {
+			prop = PropertiesLoader.getPropeties("textfiles/score.properties");
+
+		}
 		List<Score> scores = new ArrayList<>();
 		Set<Entry<Object, Object>> set = prop.entrySet();
 		for(Entry<Object, Object> entry : set) {
@@ -33,14 +47,25 @@ public abstract class Scoremanager {
 
 	public static void addScore(int gameScore, int nbWords, String pseudo) {
 		String value = gameScore +"|" + nbWords;
-		PropertiesConfiguration config;
 		 FileOutputStream fileOut = null;
 	        FileInputStream fileIn = null;
 		try {
 			
 			Properties configProperty = new Properties();
 
-            File file = FileLoader.getFile("textfiles/score.properties");
+			File file =null;
+			String path = System.getProperty("SCORE_PATH");
+			
+			System.out.println("path : " +path);
+			if(!path.isEmpty()) {
+	            file = FileLoader.getFile(path);
+			}
+			else {
+	            file = FileLoader.getFile("textfiles/score.properties");
+
+			}
+			Files.readAllLines(file.toPath()).stream().forEach(System.out::println);
+            
             fileIn = new FileInputStream(file);
             configProperty.load(fileIn);
             configProperty.setProperty(pseudo, value);
