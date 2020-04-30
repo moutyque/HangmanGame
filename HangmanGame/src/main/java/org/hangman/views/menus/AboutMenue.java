@@ -13,16 +13,11 @@ public class AboutMenue extends JMenu {
 	public AboutMenue() {
 		super();
 		this.setText("A propos");
+		this.setMnemonic('A');
 		}
 	
 	public void setFrame(MainFrame fram) {
 		this.frame = fram;		
-//		this.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				frame.switchToAboutPanel();
-//			}
-//		});
 		this.addMenuListener(new MenuListener() {
 	        public void menuSelected(MenuEvent e) {
 	        	frame.switchToAboutPanel();
