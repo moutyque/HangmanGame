@@ -1,10 +1,9 @@
-package org.hangman.controller;
+package org.hangman.helper;
 
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
 import org.hangman.model.Constante;
-import org.hangman.views.helper.FileLoader;
 //Singleton
 public class PropertiesLoader {
 	private static PropertiesLoader me = null;

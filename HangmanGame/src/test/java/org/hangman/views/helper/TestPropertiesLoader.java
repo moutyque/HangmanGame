@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
+import org.hangman.helper.FileLoader;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

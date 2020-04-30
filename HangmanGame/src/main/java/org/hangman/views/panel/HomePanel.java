@@ -12,10 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import org.hangman.controller.PropertiesLoader;
+import org.hangman.helper.FileLoader;
+import org.hangman.helper.PropertiesLoader;
 import org.hangman.model.Constante;
 import org.hangman.views.font.FontFactory;
-import org.hangman.views.helper.FileLoader;
 
 public class HomePanel extends JPanel {
 

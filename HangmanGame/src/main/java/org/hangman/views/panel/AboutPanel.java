@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import org.hangman.controller.PropertiesLoader;
+import org.hangman.helper.PropertiesLoader;
 import org.hangman.views.font.FontFactory;
 
 public class AboutPanel extends JPanel {

@@ -1,5 +1,6 @@
 package org.hangman.views.panel;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,9 +19,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.hangman.controller.Game;
-import org.hangman.controller.PropertiesLoader;
+import org.hangman.helper.FileLoader;
+import org.hangman.helper.PropertiesLoader;
 import org.hangman.listenners.LetterButtonListener;
-import org.hangman.views.helper.FileLoader;
+import org.hangman.views.font.FontFactory;
 
 public class GamePanel extends JPanel {
 	private final Game game;
@@ -30,7 +33,6 @@ public class GamePanel extends JPanel {
 	private JLabel currentScoreLabel = new JLabel("");
 	private JLabel guessWordLabel = new JLabel("");
 	private List<JButton> buttons = new ArrayList<>();
-	private ImagePanel image;
 	private JLabel picture = new JLabel();
 	
 	public GamePanel(Game game) {
@@ -41,13 +43,18 @@ public class GamePanel extends JPanel {
 		nbFoundWords.setAlignmentX(Component.CENTER_ALIGNMENT);
 		currentScoreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		guessWordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		guessWordLabel.setFont(FontFactory.getWordFont());
+		guessWordLabel.setForeground(Color.BLUE);
 
 		JPanel leftPan = new JPanel();
 		leftPan.setLayout(new BoxLayout(leftPan, BoxLayout.PAGE_AXIS));
 		leftPan.add(nbFoundWords);
+		leftPan.add(Box.createVerticalGlue());
 		leftPan.add(currentScoreLabel);
+		leftPan.add(Box.createVerticalGlue());
 		leftPan.add(guessWordLabel);
-
+		leftPan.add(Box.createVerticalGlue());
+		
 		JPanel buttonsPanel = initButtonsPanel();
 		leftPan.add(buttonsPanel);
 		this.add(leftPan);
@@ -138,7 +145,6 @@ public class GamePanel extends JPanel {
 		try {
 
 			String pictureName = "Game.picture." + this.game.getCurrentRound().getErrorsCount();
-			image = new ImagePanel(ImageIO.read(FileLoader.getFile(PropertiesLoader.getInstance().getProperties().getProperty(pictureName))));
 			
 			picture.setIcon(new ImageIcon(ImageIO.read(FileLoader.getFile(PropertiesLoader.getInstance().getProperties().getProperty(pictureName)))));
 		} catch (IOException e) {

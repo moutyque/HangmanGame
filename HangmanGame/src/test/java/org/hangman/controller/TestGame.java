@@ -10,9 +10,9 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.List;
 
+import org.hangman.helper.FileLoader;
 import org.hangman.model.Constante;
 import org.hangman.model.Round;
-import org.hangman.views.helper.FileLoader;
 import org.junit.Test;
 
 public class TestGame {

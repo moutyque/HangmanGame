@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Random;
 
+import org.hangman.helper.Scoremanager;
 import org.hangman.model.Score;
 import org.junit.Test;
 

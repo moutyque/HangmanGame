@@ -1,4 +1,4 @@
-package org.hangman.views.helper;
+package org.hangman.helper;
 
 import java.io.File;
 import java.io.FileNotFoundException;

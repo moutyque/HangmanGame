@@ -1,5 +1,10 @@
-package org.hangman.controller;
+package org.hangman.helper;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -9,7 +14,6 @@ import java.util.Set;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.hangman.model.Score;
-import org.hangman.views.helper.FileLoader;
 
 public abstract class Scoremanager {
 
@@ -30,11 +34,24 @@ public abstract class Scoremanager {
 	public static void addScore(int gameScore, int nbWords, String pseudo) {
 		String value = gameScore +"|" + nbWords;
 		PropertiesConfiguration config;
+		 FileOutputStream fileOut = null;
+	        FileInputStream fileIn = null;
 		try {
-			config = new PropertiesConfiguration(FileLoader.getFile("textfiles/score.properties"));
-			config.setProperty(pseudo, value);
-			config.save();
-		} catch (ConfigurationException e) {
+			
+			Properties configProperty = new Properties();
+
+            File file = FileLoader.getFile("textfiles/score.properties");
+            fileIn = new FileInputStream(file);
+            configProperty.load(fileIn);
+            configProperty.setProperty(pseudo, value);
+            fileOut = new FileOutputStream(file);
+            configProperty.store(fileOut, "");
+            
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}           
