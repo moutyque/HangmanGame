@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="HangmanGame/src/main/java"/>
+	<classpathentry kind="src" path="HangmanGame/src/test/java"/>
+	<classpathentry kind="lib" path="HangmanGame/target/HangmanGame.jar"/>
+	<classpathentry kind="lib" path="HangmanGame/target/HangmanGame/HangmanGame.jar"/>
+	<classpathentry kind="output" path="HangmanGame/target/classes"/>
+</classpath>

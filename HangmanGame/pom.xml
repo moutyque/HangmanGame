@@ -4,7 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>HangmanGame</groupId>
 	<artifactId>HangmanGame</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
+	  <packaging>pom</packaging>
+	
 	<name>Hangman Game</name>
 	<url>https://github.com/moutyque/HangmanGame</url>
 	<contributors>
@@ -130,4 +132,9 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<modules>
+		<module>HangmanGameModel</module>
+		<module>HangmanGameSwingViews</module>
+	<module>HangmanGameController</module>
+	</modules>
 </project>
