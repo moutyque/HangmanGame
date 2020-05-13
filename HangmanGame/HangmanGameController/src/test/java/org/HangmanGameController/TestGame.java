@@ -35,8 +35,8 @@ public class TestGame {
 		Round round = game.getCurrentRound();
 		assertFalse(round.getWord().isEmpty());
 		assertFalse(round.getConvertedWord().isEmpty());
-		assertFalse(round.getGuessWord().isEmpty());
-		assertEquals(0, round.getErrorsCount(),0);
+		assertFalse(round.getGuessWord().get().isEmpty());
+		assertEquals(0, round.getErrorsCount().get(),0);
 		
 	}
 }

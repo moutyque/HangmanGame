@@ -5,81 +5,93 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
-import org.apache.commons.lang.StringUtils;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
+
 import org.hangman.model.Score;
 
 public abstract class Scoremanager {
-
-	public static List<Score> getTenTopScore(){
-		
-		Properties prop =null;
-		String path = System.getProperty("SCORE_PATH");
-		
-		System.out.println("path : " +path);
-		if(StringUtils.isNotEmpty(path)) {
-            prop = PropertiesLoader.getPropeties(path);
+	private static File pptFile = null;
+	private static Properties scores = new Properties();	
+	static {
+		String path = PreferenceManager.getPersonFilePath().toString();
+		if(!path.isEmpty()) {
+			pptFile = FileLoader.getFile(path);
+			setScorePpt();
 		}
 		else {
-			prop = PropertiesLoader.getPropeties("textfiles/score.properties");
+			pptFile = FileLoader.getFile("textfiles/score.properties");
+			setScorePpt();
+			createScoresFile();
+			PreferenceManager.setPersonFilePath(pptFile);
+			saveScore();
+		}
+	}
+
+	private static void createScoresFile() {
+		JFileChooser fr = new JFileChooser();
+		FileSystemView fw = fr.getFileSystemView();
+		File myDocument = fw.getDefaultDirectory();
+		pptFile = fileWithDirectoryAssurance(myDocument+"/HangmanGame","score.properties");
+		setScorePpt();
+	}
+
+	private static void setScorePpt() {
+		try {
+			scores.load(new FileInputStream(pptFile));
+		} catch (IOException e1) {
 
 		}
-		List<Score> scores = new ArrayList<>();
-		Set<Entry<Object, Object>> set = prop.entrySet();
+	}
+
+	private static File fileWithDirectoryAssurance(String directory, String filename) {
+		File dir = new File(directory);
+		if (!dir.exists()) dir.mkdirs();
+		File file =  new File(directory , filename);
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return file;
+	}
+
+	public static List<Score> getTenTopScore(){
+		List<Score> scoreList = new ArrayList<>();
+		Set<Entry<Object, Object>> set = scores.entrySet();
 		for(Entry<Object, Object> entry : set) {
 			String key = (String) entry.getKey();
 			String value = (String) entry.getValue();
-			scores.add(new Score(Integer.parseInt(value.split("\\|")[0]), Integer.parseInt(value.split("\\|")[1]), key));
+			scoreList.add(new Score(Integer.parseInt(value.split("\\|")[0]), Integer.parseInt(value.split("\\|")[1]), key));
 		}
-		scores.sort((a,b)->Integer.compare(b.getScore(), a.getScore()));
+		scoreList.sort((a,b)->Integer.compare(b.getScore(), a.getScore()));
 		int limit = Math.min(scores.size(), 10);
-		return scores.subList(0, limit);
+		return scoreList.subList(0, limit);
 	}
 
 	public static void addScore(int gameScore, int nbWords, String pseudo) {
 		String value = gameScore +"|" + nbWords;
-		 FileOutputStream fileOut = null;
-	        FileInputStream fileIn = null;
+		scores.setProperty(pseudo, value);
+		saveScore();
+
+
+	}
+
+	private static void saveScore() {
 		try {
-			
-			Properties configProperty = new Properties();
-
-			File file =null;
-			String path = System.getProperty("SCORE_PATH");
-			
-			System.out.println("path : " +path);
-			if(!path.isEmpty()) {
-	            file = FileLoader.getFile(path);
-			}
-			else {
-	            file = FileLoader.getFile("textfiles/score.properties");
-
-			}
-			Files.readAllLines(file.toPath()).stream().forEach(System.out::println);
-            
-            fileIn = new FileInputStream(file);
-            configProperty.load(fileIn);
-            configProperty.setProperty(pseudo, value);
-            fileOut = new FileOutputStream(file);
-            configProperty.store(fileOut, "");
-            
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			scores.store(new FileOutputStream(pptFile), "");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.err.println("Could not set the score propeties file");
+			System.err.println("check that this file existe : "+pptFile.getAbsolutePath());
 			e.printStackTrace();
-		}           
-		
+		}
 	}
 }

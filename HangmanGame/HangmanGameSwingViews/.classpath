@@ -25,5 +25,6 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/HangmanGameController"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/HangmanGameModel"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/HangmanGameResources"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

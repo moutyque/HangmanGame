@@ -124,11 +124,11 @@ public class GamePanel extends JPanel {
 	private void updateLabels() {
 		nbFoundWords.setText(String.format("Nombre de mot trouve : %s", this.game.getNbFoundWord()));
 		currentScoreLabel.setText(String.format("Votre score actuel est de : %s", this.game.getGameScore()));
-		guessWordLabel.setText(this.game.getCurrentRound().getGuessWord());
+		guessWordLabel.setText(this.game.getCurrentRound().getGuessWord().get());
 	}
 
 	private void updateButtons() {
-		Set<Character> chars =  this.game.getCurrentRound().getUsedChar();
+		Set<Character> chars =  this.game.getCurrentRound().getUsedChar().get();
 		for(JButton button : this.buttons) {
 			if(chars.contains(button.getText().toLowerCase().toCharArray()[0])) {
 				button.setEnabled(false);

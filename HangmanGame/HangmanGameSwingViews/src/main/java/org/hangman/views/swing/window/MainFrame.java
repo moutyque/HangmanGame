@@ -82,10 +82,10 @@ public class MainFrame extends JFrame implements Observer {
 				this.getContentPane().repaint();
 				break;
 			case UPDATE_END_GAME:
-				JOptionPane.showMessageDialog(this, "Vous avez perdu, le mot ‡ trouver Ètait : " + this.game.getCurrentRound().getWord());
+				JOptionPane.showMessageDialog(this, "Vous avez perdu, le mot √† trouver √©tait : " + this.game.getCurrentRound().getWord());
 				break;
 			case UPDATE_END_ROUND:
-				JOptionPane.showMessageDialog(this, "Vous avez gagnÈ ce round, le mot ‡ trouver Ètait : " + this.game.getCurrentRound().getWord());
+				JOptionPane.showMessageDialog(this, "Vous avez gagn√© ce round, le mot√† trouver √©tait : " + this.game.getCurrentRound().getWord());
 				break;
 
 

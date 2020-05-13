@@ -5,12 +5,38 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Round {
 
 	private final String word;
 	private final String convertedWord;
-	private String guessWord;
-	private int errorsCount;
+	private StringProperty guessWord = new SimpleStringProperty();
+	private IntegerProperty errorsCount = new SimpleIntegerProperty();
+	public StringProperty getGuessWord() {
+		return guessWord;
+	}
+
+	public void setGuessWord(StringProperty guessWord) {
+		this.guessWord = guessWord;
+	}
+
+	public IntegerProperty getErrorsCount() {
+		return errorsCount;
+	}
+
+	public void setErrorsCount(IntegerProperty errorsCount) {
+		this.errorsCount = errorsCount;
+	}
+
+	
+
+
 	private boolean isOver = false;
 	public boolean isOver() {
 		return isOver;
@@ -18,17 +44,21 @@ public class Round {
 
 
 	private final int[] scores = new int[]{100,50,35,25,15,10,5};
-	private Set<Character> usedChar = new HashSet<>();
-
-	public Set<Character> getUsedChar() {
+	private ObjectProperty<Set<Character>> usedChar = new SimpleObjectProperty<>();
+	public ObjectProperty<Set<Character>> getUsedChar() {
 		return usedChar;
 	}
+
+	public void setUsedChar(ObjectProperty<Set<Character>> usedChar) {
+		this.usedChar = usedChar;
+	}
+
 
 	public Round(String word) {
 		this.word = word;
 		StringBuilder sb = new StringBuilder();
 		convertedWord = unAccent(word);
-
+		usedChar.set(new HashSet<Character>());
 
 
 		for(char c : convertedWord.toCharArray()) {
@@ -39,21 +69,11 @@ public class Round {
 			}
 
 		}
-		this.guessWord = sb.toString();
+		this.guessWord.set(sb.toString());
 	}
 
-	public String getGuessWord() {
-		return guessWord;
-	}
-	public void setGuessWord(String guessWord) {
-		this.guessWord = guessWord;
-	}
-	public int getErrorsCount() {
-		return errorsCount;
-	}
-	public void setErrorsCount(int errorsCount) {
-		this.errorsCount = errorsCount;
-	}
+	
+	
 	public String getWord() {
 		return word;
 	}
@@ -71,19 +91,19 @@ public class Round {
 	}
 
 	public int getRoundScore() {
-		if(errorsCount>6) {
+		if(errorsCount.get()>6) {
 			return 0;
 		}else {
-			return scores[errorsCount];
+			return scores[errorsCount.get()];
 		}
 	}
 	
 	
 	public void submitChar(char c) {
 		c = Character.toLowerCase(c);
-		if(!usedChar.contains(c)) {
+		if(!usedChar.get().contains(c)) {
 			boolean isPresent = false;
-			StringBuilder tmpWord = new StringBuilder(guessWord);
+			StringBuilder tmpWord = new StringBuilder(guessWord.get());
 
 			for(int i = 0;i<convertedWord.length();i++) {
 				if(c==convertedWord.charAt(i)) {
@@ -91,14 +111,22 @@ public class Round {
 					tmpWord.setCharAt(i, word.charAt(i));
 				}				
 			}
-			guessWord = tmpWord.toString();
-			if(!isPresent) errorsCount++;
-			usedChar.add(c);
+			
+			usedChar.get().add(c);
+			if(!isPresent) {
+				int errorCount = errorsCount.get()+1;
+				if(errorCount>6) isOver = true;
+				errorsCount.set(errorCount);
+			}
+			else {
+				if(!tmpWord.toString().contains(Constante.DEFAULT_CHAR))isOver = true;
+				guessWord.set(tmpWord.toString());
+			}
+			
+			
 		}
 		
-		if(errorsCount>6 || !guessWord.contains(Constante.DEFAULT_CHAR)) {
-			isOver = true;
-		}
+		
 		
 	}
 	

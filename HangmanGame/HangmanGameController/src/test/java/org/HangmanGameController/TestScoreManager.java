@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Random;
 
+import org.hangman.helper.PreferenceManager;
 import org.hangman.helper.Scoremanager;
 import org.hangman.model.Score;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class TestScoreManager {
 	
 	@Test
 	public void testgetTenTopScore() {
+		PreferenceManager.clearFilePath();
 		List<Score> scores = Scoremanager.getTenTopScore();
 		assertEquals(10, scores.size());
 		assertTrue(scores.get(0).getScore() > scores.get(1).getScore());
@@ -23,6 +25,7 @@ public class TestScoreManager {
 	
 	@Test
 	public void testaddNewScore() {
+		PreferenceManager.clearFilePath();
 		List<Score> scores = Scoremanager.getTenTopScore();
 		int maxScore = scores.get(0).getScore()+1;
 		Random rand = new Random();

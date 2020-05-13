@@ -3,15 +3,14 @@ package org.hangman.helper;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
-import org.hangman.model.Constante;
 
 public abstract class FileLoader {
 
@@ -20,7 +19,7 @@ public abstract class FileLoader {
 
 	public static Properties getPropertyFile(String filePath) throws FileNotFoundException {
 		Properties prop = new Properties();
-		InputStream  inputStream = new FileInputStream(getFile(filePath));
+		FileInputStream  inputStream = new FileInputStream(getFile(filePath));
 		if (inputStream != null) {
 			try {
 				prop.load(inputStream);
