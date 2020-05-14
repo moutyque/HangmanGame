@@ -7,6 +7,7 @@
     <artifactId>HangmanGame</artifactId>
     <version>0.0.2-SNAPSHOT</version>
   </parent>
+  
   <groupId>HangmanGameModel</groupId>
   <artifactId>HangmanGameModel</artifactId>
   <version>0.0.2-SNAPSHOT</version>
@@ -22,5 +23,7 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+
   </dependencies>
 </project>

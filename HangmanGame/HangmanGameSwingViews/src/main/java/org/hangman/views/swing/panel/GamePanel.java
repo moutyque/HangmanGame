@@ -144,8 +144,7 @@ public class GamePanel extends JPanel {
 	private void updatePicture() {
 		try {
 
-			String pictureName = "Game.picture." + this.game.getCurrentRound().getErrorsCount();
-			
+			String pictureName = "Game.picture." + this.game.getCurrentRound().getErrorsCount().get();
 			picture.setIcon(new ImageIcon(ImageIO.read(FileLoader.getFile(PropertiesLoader.getInstance().getProperties().getProperty(pictureName)))));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

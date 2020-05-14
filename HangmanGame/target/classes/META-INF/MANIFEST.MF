@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Built-By: Quentin
-Class-Path: lib/commons-io-2.6.jar lib/commons-configuration-1.10.jar 
- lib/commons-lang-2.6.jar lib/commons-logging-1.1.1.jar
-Build-Jdk: 1.8.0_231
-Created-By: Maven Integration for Eclipse
-Main-Class: org.hangman.run.Main
-

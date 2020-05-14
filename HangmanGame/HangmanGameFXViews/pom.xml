@@ -1,26 +1,122 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>HangmanGame</groupId>
-    <artifactId>HangmanGame</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
-  </parent>
-  <groupId>HangmanGameFXViews</groupId>
-  <artifactId>HangmanGameFXViews</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-  <name>HangmanGameFXViews</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>HangmanGame</groupId>
+		<artifactId>HangmanGame</artifactId>
+		<version>0.0.2-SNAPSHOT</version>
+	</parent>
+	
+	<groupId>HangmanGameFXViews</groupId>
+	<artifactId>HangmanGameFXViews</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+	<name>HangmanGameFXViews</name>
+	<url>http://maven.apache.org</url>
+
+
+	<organization>
+		<!-- Used as the 'Vendor' for JNLP generation -->
+		<name>Small Game, Inc.</name>
+	</organization>
+
+	<properties>
+		<slf4j.version>1.7.12</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+	</properties>
+
+	<build>
+
+		<finalName>HangmanGame</finalName>
+
+		<plugins>
+
+			<plugin>
+				<groupId>com.zenjava</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>8.1.5</version>
+				<configuration>
+
+					<mainClass>org.HangmanGameFXViews.Main</mainClass>
+
+					<!-- only required if signing the jar file -->
+					<keyStoreAlias>example-user</keyStoreAlias>
+					<keyStorePassword>example-password</keyStorePassword>
+					<allPermissions>true</allPermissions>
+
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- MigLayout -->
+
+		<dependency>
+			<groupId>com.miglayout</groupId>
+			<artifactId>miglayout-javafx</artifactId>
+			<version>5.0</version>
+		</dependency>
+
+		<!-- Apache Commons -->
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<!-- Logging -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+    	<!-- Modules dependency -->
+    	<dependency>
+			<groupId>HangmanGameController</groupId>
+			<artifactId>HangmanGameController</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>HangmanGameModel</groupId>
+			<artifactId>HangmanGameModel</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>HangmanGameResources</groupId>
+			<artifactId>HangmanGameResources</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+		
+	</dependencies>
 </project>

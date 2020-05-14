@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>HangmanGame</groupId>
 	<artifactId>HangmanGame</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
-	  <packaging>pom</packaging>
-	
+	<packaging>pom</packaging>
+
 	<name>Hangman Game</name>
 	<url>https://github.com/moutyque/HangmanGame</url>
 	<contributors>
@@ -25,7 +27,7 @@
 
 	<build>
 
-   <finalName>${project.artifactId}</finalName>
+		<finalName>${project.artifactId}</finalName>
 
 		<plugins>
 			<!-- download source code in Eclipse, best practice -->
@@ -133,9 +135,9 @@
 	</dependencies>
 	<modules>
 		<module>HangmanGameModel</module>
+		<module>HangmanGameController</module>
+		<module>HangmanGameResources</module>
 		<module>HangmanGameSwingViews</module>
-	<module>HangmanGameController</module>
-    <module>HangmanGameFXViews</module>
-    <module>HangmanGameResources</module>
-  </modules>
+		<module>HangmanGameFXViews</module>
+	</modules>
 </project>

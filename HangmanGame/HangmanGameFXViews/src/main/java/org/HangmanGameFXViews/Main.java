@@ -1,21 +1,18 @@
 package org.HangmanGameFXViews;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 import java.util.Properties;
 
 import org.HangmanGameFXViews.view.GameControlleur;
 import org.HangmanGameFXViews.view.MenuesActionsControlleur;
+import org.hangman.helper.FileLoader;
 import org.hangman.helper.PropertiesLoader;
-import org.hangman.helper.Scoremanager;
-import org.hangman.model.Score;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -41,7 +38,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		stagePrincipal = primaryStage;
-		stagePrincipal.setTitle("Application de gestion de personnes");
+		stagePrincipal.setTitle(PropertiesLoader.getInstance().getProperties().getProperty("Title"));
+		Image img = new javafx.scene.image.Image( this.getClass().getClassLoader().getResourceAsStream("pictures/hangmanIcon.jpg"));
+
+		stagePrincipal.getIcons().add(img);//Main.class.getResourceAsStream("hangmanIcon.jpg")
 		initialisationConteneurPrincipal();
 		initialisationContenu();
 		initialisationRules();
