@@ -24,3 +24,22 @@
 .panel {
 	-fx-background-color : #FFFFFF;
 }
+
+.label-score {
+	-fx-font-family: Arial;
+	-fx-font-size: 14px;
+}
+
+.label-guessedWord {
+	-fx-font-family: Arial;
+	-fx-font-weight:bold;
+	-fx-font-size: 20px;
+	-fx-text-fill: blue;
+}
+
+.button {
+	-fx-background-color : lightblue   ;
+	 
+	
+	
+}

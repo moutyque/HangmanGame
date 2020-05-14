@@ -21,13 +21,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.collections.ListChangeListener;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.util.Callback;
 
 public class GameControlleur {
@@ -54,6 +58,15 @@ public class GameControlleur {
 	private Label score;
 	@FXML
 	private Label guessedWord;
+
+	@FXML
+	private FlowPane line1;
+	@FXML
+	private FlowPane line2;
+	@FXML
+	private FlowPane line3;
+	@FXML
+	private FlowPane line4;
 
 	@FXML
 	private Button A;
@@ -128,6 +141,16 @@ public class GameControlleur {
 	@FXML
 	public void initialize() {
 
+		initButtons();
+		rounds.addListener(new RoundChange());
+		newGame();
+	}
+
+	private void initButtons() {
+		addMargin(line1);
+		addMargin(line2);
+		addMargin(line3);
+		addMargin(line4);
 		buttonGroup.put('A', A);
 		buttonGroup.put('B', B);
 		buttonGroup.put('C', C);
@@ -154,70 +177,17 @@ public class GameControlleur {
 		buttonGroup.put('X', X);
 		buttonGroup.put('Y', Y);
 		buttonGroup.put('Z', Z);
+		EventHandler<ActionEvent> handler = new ButtonHandler();
 
-		rounds.addListener((Change<? extends Round> c) -> {
-			while (c.next()) {
-				if (c.wasAdded()) {
-					refresh();
-				}
-				else if(c.wasUpdated()) {
-					refresh();
-					if(getCurrentRound().isOver()) {
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("Information");
-						alert.setHeaderText(null);
-						alert.setContentText("Le mot a trouvé était "+getCurrentRound().getWord());
+		for(Map.Entry<Character, Button> e : buttonGroup.entrySet()) {
+			e.getValue().setOnAction(handler);
+		}
+	}
 
-						alert.showAndWait();
-						if(getCurrentRound().getErrorsCount().get() > 6) {
-							endGame();
-						}
-						else {
-							newRound();
-						}
-					}
-					
-				}
-			}
-		});
-
-
-		EventHandler<ActionEvent> handler = new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				Button button = (Button) event.getSource();
-				submitChar(button.getText().charAt(0));
-			}
-		};
-
-		A.setOnAction(handler);
-		B.setOnAction(handler);
-		C.setOnAction(handler);
-		D.setOnAction(handler);
-		E.setOnAction(handler);
-		F.setOnAction(handler);
-		G.setOnAction(handler);
-		H.setOnAction(handler);
-		I.setOnAction(handler);
-		J.setOnAction(handler);
-		K.setOnAction(handler);
-		L.setOnAction(handler);
-		M.setOnAction(handler);
-		N.setOnAction(handler);
-		O.setOnAction(handler);
-		P.setOnAction(handler);
-		Q.setOnAction(handler);
-		R.setOnAction(handler);
-		S.setOnAction(handler);
-		T.setOnAction(handler);
-		U.setOnAction(handler);
-		V.setOnAction(handler);
-		W.setOnAction(handler);
-		X.setOnAction(handler);
-		Y.setOnAction(handler);
-		Z.setOnAction(handler);
-		newGame();
+	private void addMargin(FlowPane element) {
+		for(Node child : element.getChildren()) {
+			FlowPane.setMargin(child, new Insets(5));
+		}
 	}
 
 
@@ -239,7 +209,7 @@ public class GameControlleur {
 
 
 	}
-	
+
 	private String getPseudo() {
 		TextInputDialog dialog = new TextInputDialog("walter");
 		dialog.setTitle("Choix du pseudo");
@@ -256,7 +226,7 @@ public class GameControlleur {
 
 
 	}
-	
+
 	public void refresh() {
 		if(!rounds.isEmpty()) {
 			Properties prop = PropertiesLoader.getInstance().getProperties();
@@ -308,4 +278,44 @@ public class GameControlleur {
 	private Round getCurrentRound() {
 		return rounds.get(rounds.size()-1);
 	}
+	class ButtonHandler implements EventHandler<ActionEvent>{
+		@Override
+		public void handle(ActionEvent event) {
+			Button button = (Button) event.getSource();
+			submitChar(button.getText().charAt(0));
+		}
+	}
+
+	class RoundChange implements ListChangeListener<Round>{
+
+		@Override
+		public void onChanged(Change<? extends Round> c) {
+			while (c.next()) {
+				if (c.wasAdded()) {
+					refresh();
+				}
+				else if(c.wasUpdated()) {
+					refresh();
+					if(getCurrentRound().isOver()) {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Information");
+						alert.setHeaderText(null);
+						alert.setContentText("Le mot a trouvé était "+getCurrentRound().getWord());
+
+						alert.showAndWait();
+						if(getCurrentRound().getErrorsCount().get() > 6) {
+							endGame();
+						}
+						else {
+							newRound();
+						}
+					}
+
+				}
+			}
+
+		}
+
+	}
+
 }

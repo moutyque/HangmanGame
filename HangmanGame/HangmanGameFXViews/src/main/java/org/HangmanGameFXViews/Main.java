@@ -85,7 +85,7 @@ public class Main extends Application {
 			mainPane = loader.load();
 			MenuesActionsControlleur action = loader.getController();
 			action.setMainClass(this);
-
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
