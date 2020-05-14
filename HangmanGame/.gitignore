@@ -1,2 +1,3 @@
 # Do not into consideration target folder
 target/
+build/
