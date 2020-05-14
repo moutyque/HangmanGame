@@ -20,3 +20,7 @@
     -fx-text-fill: gray;
     -fx-highlight-fill: #7ecfff;
 }
+
+.panel {
+	-fx-background-color : #FFFFFF;
+}

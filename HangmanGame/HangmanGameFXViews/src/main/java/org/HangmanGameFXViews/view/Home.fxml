@@ -5,20 +5,30 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="473.0" prefWidth="378.0" stylesheets="@textarea.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HangmanGameFXViews.view.HomeControlleur">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" styleClass="panel" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HangmanGameFXViews.view.HomeControlleur">
    <children>
-      <Label fx:id="headerLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="368.0" text="Bienvenue dans le jeu du PENDU" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="image" fitHeight="291.0" fitWidth="539.0" layoutX="10.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <image>
-            <Image url="@../../../../resources/pictures/homePicture.jpg" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="footerText" editable="false" layoutX="8.0" layoutY="318.0" prefHeight="147.0" prefWidth="368.0" text="Vous avez 7 coups pour trouver le mot cacher et si vous réussissez... et bien on recommence!&#10;&#10;Plus vous avez trouvez de mots, plus votre score grandira!! Alors à vous de jouer!&#10;PROVERBE : &quot;Pas vu, pas pris!&#10;                     Pris! PENDU!!!&quot;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <VBox prefHeight="473.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="headerLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="368.0" text="Bienvenue dans le jeu du PENDU" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="image" fitHeight="291.0" fitWidth="539.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../HangmanGameResources/src/main/resources/pictures/homePicture.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <TextArea fx:id="footerText" editable="false" prefWidth="378.0" text="Vous avez 7 coups pour trouver le mot cacher et si vous réussissez... et bien on recommence!&#10;&#10;Plus vous avez trouvez de mots, plus votre score grandira!! Alors à vous de jouer!&#10;PROVERBE : &quot;Pas vu, pas pris!&#10;                     Pris! PENDU!!!&quot;" wrapText="true" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

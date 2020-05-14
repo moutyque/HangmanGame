@@ -5,16 +5,16 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HangmanGameFXViews.view.MenuesActionsControlleur">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.HangmanGameFXViews.view.MenuesActionsControlleur">
    <top>
       <MenuBar fx:id="menusBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseReleased="#switchToAbout" prefWidth="400.0" BorderPane.alignment="CENTER">
          <menus>
-            <Menu mnemonicParsing="false" text="Fichiers">
+            <Menu fx:id="files" mnemonicParsing="false" text="Fichiers">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#switchToNew" text="Nouveau" />
-                  <MenuItem mnemonicParsing="false" onAction="#switchToScore" text="Scores" />
-                  <MenuItem mnemonicParsing="false" onAction="#switchToRules" text="Règles" />
-                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Quitter" />
+                  <MenuItem fx:id="newGame" mnemonicParsing="false" onAction="#switchToNew" text="Nouveau" />
+                  <MenuItem fx:id="scores" mnemonicParsing="false" onAction="#switchToScore" text="Scores" />
+                  <MenuItem fx:id="rules" mnemonicParsing="false" onAction="#switchToRules" text="Règles" />
+                  <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Quitter" />
                </items>
             </Menu>
             <Menu fx:id="about" mnemonicParsing="false" onShowing="#switchToAbout" text="À propos">
