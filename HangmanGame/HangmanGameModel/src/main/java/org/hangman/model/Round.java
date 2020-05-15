@@ -18,24 +18,15 @@ public class Round {
 	private final String convertedWord;
 	private StringProperty guessWord = new SimpleStringProperty();
 	private IntegerProperty errorsCount = new SimpleIntegerProperty();
+	
 	public StringProperty getGuessWord() {
 		return guessWord;
 	}
 
-	public void setGuessWord(StringProperty guessWord) {
-		this.guessWord = guessWord;
-	}
 
 	public IntegerProperty getErrorsCount() {
 		return errorsCount;
 	}
-
-	public void setErrorsCount(IntegerProperty errorsCount) {
-		this.errorsCount = errorsCount;
-	}
-
-	
-
 
 	private boolean isOver = false;
 	public boolean isOver() {
@@ -45,14 +36,10 @@ public class Round {
 
 	private final int[] scores = new int[]{100,50,35,25,15,10,5};
 	private ObjectProperty<Set<Character>> usedChar = new SimpleObjectProperty<>();
+	
 	public ObjectProperty<Set<Character>> getUsedChar() {
 		return usedChar;
 	}
-
-	public void setUsedChar(ObjectProperty<Set<Character>> usedChar) {
-		this.usedChar = usedChar;
-	}
-
 
 	public Round(String word) {
 		this.word = word;
